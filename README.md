@@ -16,7 +16,7 @@ Docker image is located at [dockerhub](https://hub.docker.com/repository/docker/
 
 `uvicorn app_python.main:app`
 
-## Action stages
+## Github Actions stages
 
 1. **lint** runs flake8 checks
 2. **test** runs pytest
