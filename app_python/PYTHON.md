@@ -25,6 +25,9 @@ type hints. The key features are:
 The pytest framework makes it easy to write small tests, yet scales to support complex functional testing for
 applications and libraries.
 
+- use fixture to mock calls to external modules
+- use Testclient to call tested functions
+
 ## Linter
 
 **flake8**

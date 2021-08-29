@@ -10,8 +10,11 @@ App that returns Moscow time is located at app_python/
 \
 Docker image is located at [dockerhub](https://hub.docker.com/repository/docker/matveyplevako/lab2)
 
+## How to run?
+`uvicorn app_python.main:app`
 
-## Tests
+
+## Unit tests
 
 To run tests run `pytest`
 
