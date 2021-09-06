@@ -1,0 +1,6 @@
+---
+- name: "Deploy the app"
+  hosts: all
+
+  roles:
+    - role: deploy_app

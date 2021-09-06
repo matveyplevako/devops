@@ -1,0 +1,17 @@
+---
+- name: Ensure directiry exists
+  file:
+    path: "{{ docker_compose_dir }}"
+    state: directory
+
+- name: Copy docker-compose
+  template:
+    src: template/docker-compose.yaml
+    dest: "{{ docker_compose_dir }}/docker-compose.yaml"
+
+- name: Pull and restart containers
+  docker_compose:
+    state: present
+    project_src: "{{ docker_compose_dir }}"
+    pull: yes
+    recreate: always
