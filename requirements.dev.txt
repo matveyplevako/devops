@@ -25,3 +25,4 @@ toml==0.10.2
 typing-extensions==3.10.0.0
 urllib3==1.26.6
 uvicorn==0.15.0
+prometheus-fastapi-instrumentator==5.7.1
