@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app_python.display_time import api
 
+from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_client import start_http_server
+
 
 def get_application():
     _app = FastAPI(title="Moscow Time")
@@ -21,3 +24,6 @@ def get_application():
 
 
 app = get_application()
+
+Instrumentator().instrument(app)
+start_http_server(8012)

@@ -42,3 +42,17 @@ services:
     networks:
       - monitoring
 
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
+    logging:
+      driver: json-file
+      options:
+        tag: '{{.ImageName}}|{{.Name}}'
+
