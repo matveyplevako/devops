@@ -12,8 +12,26 @@
 
 ### Grafana
 
-![](./grafana.png)
+![](./images/grafana.png)
 
 ### Promtail
 
-![](./promtail.png)
+![](./images/promtail.png)
+
+### Prometheus
+
+![](./images/prometheus.png)
+
+## Dashboards
+
+### Loki dashboard
+
+![](./images/loki_dashboard.png)
+
+### Prometheus dashboard
+
+![](./images/prometheus_dashboard.png)
+
+### Python_app dashboard
+
+![](./images/python_app_dashboard.png)

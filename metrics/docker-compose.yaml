@@ -5,8 +5,10 @@ networks:
   monitoring:
 
 services:
-  app:
+  app_python:
     image: matveyplevako/app_python
+    networks:
+      - monitoring
     ports:
       - "8000:8000"
     logging:
@@ -23,6 +25,12 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - monitoring
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   promtail:
     image: grafana/promtail:2.3.0
@@ -34,6 +42,12 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - monitoring
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   grafana:
     image: grafana/grafana:latest
@@ -41,6 +55,13 @@ services:
       - "3000:3000"
     networks:
       - monitoring
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
 
   prometheus:
