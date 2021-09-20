@@ -44,3 +44,17 @@ service/kubernetes   ClusterIP      10.96.0.1        <none>        443/TCP      
 - **StatefulSet** is a set of tools that provide interface for managing persistent stateful applications.
 - **DaemonSet** is a daemon that ensures each node runs a pod and garbage collects them after remove
 - **PersistentVolumes** is an abstraction for managing physical storages and provide storage for kubernetes cluster. 
+
+## Helm deploy
+```
+# kubectl get pods,svc
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/app-python-9d947d8d-7xrtf   1/1     Running   0          15s
+pod/app-python-9d947d8d-crswg   1/1     Running   0          15s
+pod/app-python-9d947d8d-kzvv9   1/1     Running   0          15s
+
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/app-python   LoadBalancer   10.107.213.33   localhost     8000:32031/TCP   15s
+service/kubernetes   ClusterIP      10.96.0.1       <none>        443/TCP          90m
+
+```
