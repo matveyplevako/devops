@@ -18,6 +18,9 @@ services:
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
 
+    volumes:
+      - ./shared:/home/container_user/shared
+
   loki:
     image: grafana/loki:2.3.0
     volumes:
