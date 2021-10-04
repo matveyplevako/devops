@@ -37,6 +37,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  name: app-python
   type: LoadBalancer
   port: 8000
 
@@ -77,3 +78,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+valumeData:
+   path: /app/shared/
+   storageCap: 256M

@@ -1,16 +1,26 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "app-python.fullname" . }}
   labels:
     {{- include "app-python.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ .Values.service.name }}
+  podManagementPolicy: Parallel
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "app-python.selectorLabels" . | nindent 6 }}
+  volumeClaimTemplates:
+    - metadata:
+        name: shared
+      spec:
+        accessModes: [ "ReadWriteMany" ]
+        resources:
+          requests:
+            storage: {{ .Values.valumeData.storageCap }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -41,6 +51,8 @@ spec:
             - name: config-volume
               mountPath: /etc/config/config.json
               subPath: config.json
+            - name: shared
+              mountPath: { { .Values.valumeData.path } }
           env:
             - name: PASSWORD
               valueFrom:
