@@ -79,7 +79,10 @@ tolerations: []
 
 affinity: {}
 
+preDownload:
+   url: "http://info.cern.ch"
 
 valumeData:
    path: /app/shared/
    storageCap: 256M
+   preDownload: /app/shared/preDownload

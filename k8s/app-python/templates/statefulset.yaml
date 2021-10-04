@@ -37,10 +37,23 @@ spec:
       serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: pre-download
+          image: busybox
+          command:
+            - wget
+            - "-O"
+            - "/preDownload/index.html"
+            - {{ .Values.preDownload.url }}
+          volumeMounts:
+            - name: pre-download
+              mountPath: "/preDownload"
       volumes:
         - name: config-volume
           configMap:
             name: config-app
+        - name: pre-download
+          emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -52,7 +65,9 @@ spec:
               mountPath: /etc/config/config.json
               subPath: config.json
             - name: shared
-              mountPath: { { .Values.valumeData.path } }
+              mountPath: {{ .Values.valumeData.path }}
+            - name: pre-download
+              mountPath: { { .Values.volumeData.preDownload } }
           env:
             - name: PASSWORD
               valueFrom:
